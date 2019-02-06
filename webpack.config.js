@@ -1,5 +1,4 @@
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
@@ -9,19 +8,14 @@ module.exports = (env, options) => {
   const config = {
     devtool: "source-map",
     entry: {
-      taskpane: "./src/taskpane/taskpane.ts",
-      ribbon: "./src/ribbon/ribbon.ts"
+      taskpane: "./src/taskpane/taskpane.js",
+      ribbon: "./src/ribbon/ribbon.js"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"]
     },
     module: {
       rules: [
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: "ts-loader"
-        },
         {
           test: /\.html$/,
           exclude: /node_modules/,
