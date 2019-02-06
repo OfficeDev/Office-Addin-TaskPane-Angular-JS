@@ -50,8 +50,6 @@
     "office-addin-debugging": "^2.0.0",
     "office-toolbox": "^0.1.1",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.3.1",
-    "typescript": "^3.1.6",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14"
