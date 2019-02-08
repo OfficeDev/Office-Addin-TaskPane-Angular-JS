@@ -8,6 +8,7 @@ module.exports = (env, options) => {
   const config = {
     devtool: "source-map",
     entry: {
+      polyfill: 'babel-polyfill',
       taskpane: "./src/taskpane/taskpane.js",
       ribbon: "./src/ribbon/ribbon.js"
     },
@@ -16,6 +17,11 @@ module.exports = (env, options) => {
     },
     module: {
       rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: 'babel-loader'
+        },
         {
           test: /\.html$/,
           exclude: /node_modules/,
@@ -32,7 +38,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         filename: "taskpane.html",
         template: "./src/taskpane/taskpane.html",
-        chunks: ["taskpane"]
+        chunks: ['polyfill', 'taskpane']
       }),
       new HtmlWebpackPlugin({
         filename: "ribbon.html",
