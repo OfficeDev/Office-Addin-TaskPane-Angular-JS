@@ -12,9 +12,6 @@ module.exports = (env, options) => {
       taskpane: "./src/taskpane/taskpane.js",
       ribbon: "./src/ribbon/ribbon.js"
     },
-    resolve: {
-      extensions: [".ts", ".tsx", ".html", ".js"]
-    },
     module: {
       rules: [
         {
