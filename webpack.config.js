@@ -47,11 +47,8 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         filename: "ribbon.html",
         template: "./src/ribbon/ribbon.html",
-        chunks: ["ribbon"]
+        chunks: ["polyfill", "ribbon"]
       }),
-      new webpack.ProvidePlugin({
-        Promise: ["es6-promise", "Promise"]
-      })
     ],
     devServer: {
       headers: {
