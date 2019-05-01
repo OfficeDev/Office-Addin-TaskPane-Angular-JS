@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^9.4.7",
-    "@types/office-js": "0.0.175",
+    "@types/office-js": "^1.0.1",
     "@types/office-runtime": "^1.0.7",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
