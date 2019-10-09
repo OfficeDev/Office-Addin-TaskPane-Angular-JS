@@ -26,11 +26,14 @@ function action(event) {
   event.completed();
 }
 
-function getGlobal() { 
-  return (typeof self !== "undefined") ? self :
-    (typeof window !== "undefined") ? window : 
-    (typeof global !== "undefined") ? global :
-    undefined;
+function getGlobal() {
+  return typeof self !== "undefined"
+    ? self
+    : typeof window !== "undefined"
+    ? window
+    : typeof global !== "undefined"
+    ? global
+    : undefined;
 }
 
 const g = getGlobal();
