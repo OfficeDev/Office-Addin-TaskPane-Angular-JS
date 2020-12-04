@@ -86,6 +86,7 @@
       "request": "attach",
       "url": "https://localhost:3000/taskpane.html?_host_Info=Word$Win32$16.01$en-US$$$$0",
       "port": 9222,
+      "timeout": 600000,
       "webRoot": "${workspaceRoot}",
       "preLaunchTask": "Debug: Word Desktop",
       "postDebugTask": "Stop Debug"
