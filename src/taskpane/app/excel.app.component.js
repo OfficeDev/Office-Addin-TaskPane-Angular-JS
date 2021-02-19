@@ -4,6 +4,7 @@ import "../../../assets/icon-16.png";
 import "../../../assets/icon-32.png";
 import "../../../assets/icon-80.png";
 const template = require("./app.component.html");
+/* global console, Excel, require */
 
 @Component({
   selector: "app-home",

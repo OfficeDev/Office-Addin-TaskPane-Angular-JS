@@ -3,7 +3,9 @@
  * See LICENSE in the project root for license information.
  */
 
-Office.onReady(info => {
+/* global global, Office, self, window */
+
+Office.onReady(() => {
   // If needed, Office.js is ready to be called
 });
 
@@ -13,12 +15,12 @@ Office.onReady(info => {
  */
 function action(event) {
   const message = {
-    type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage, 
+    type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
     message: "Performed action.",
     icon: "Icon.80x80",
     persistent: true
-  }
-  
+  };
+
   // Show a notification message
   Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
 

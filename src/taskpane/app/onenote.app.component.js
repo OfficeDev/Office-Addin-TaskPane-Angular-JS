@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 const template = require("./app.component.html");
+/* global require */
 
 @Component({
   selector: "app-home",
