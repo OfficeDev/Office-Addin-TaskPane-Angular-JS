@@ -7,6 +7,8 @@ import * as project from "./project.app.component";
 import * as word from "./word.app.component";
 const template = require("./app.component.html");
 
+/* global Office, require */
+
 @Component({
   selector: "app-home",
   template
