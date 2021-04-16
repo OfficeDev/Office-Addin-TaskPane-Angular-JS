@@ -4,7 +4,7 @@ const template = require("./app.component.html");
 
 @Component({
   selector: "app-home",
-  template
+  template,
 })
 export default class AppComponent {
   welcomeMessage = "Welcome";
@@ -12,7 +12,7 @@ export default class AppComponent {
   async run() {
     try {
       // Get the GUID of the selected task
-      Office.context.document.getSelectedTaskAsync(result => {
+      Office.context.document.getSelectedTaskAsync((result) => {
         let taskGuid;
         if (result.status === Office.AsyncResultStatus.Succeeded) {
           taskGuid = result.value;
@@ -23,7 +23,7 @@ export default class AppComponent {
 
           // Set the field value. If the call is successful, set the next field.
           for (let index = 0; index < targetFields.length; index++) {
-            Office.context.document.setTaskFieldAsync(taskGuid, targetFields[index], fieldValues[index], result => {
+            Office.context.document.setTaskFieldAsync(taskGuid, targetFields[index], fieldValues[index], (result) => {
               if (result.status === Office.AsyncResultStatus.Succeeded) {
                 index++;
               } else {
