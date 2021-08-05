@@ -48,14 +48,14 @@
       "postDebugTask": "Stop Debug"
     },
     {
-      "runtimeArgs": ["run", "start", "desktop"],
+      "name": "Outlook Desktop (Edge Chromium)",
       "type": "edge",
       "request": "attach",
       "useWebView": "advanced",
       "port": 9229,
       "timeout": 600000,
       "webRoot": "${workspaceRoot}",
-      "preLaunchTask": "Debug: Excel Desktop",
+      "preLaunchTask": "Debug: Outlook Desktop",
       "postDebugTask": "Stop Debug"
     },
     {
