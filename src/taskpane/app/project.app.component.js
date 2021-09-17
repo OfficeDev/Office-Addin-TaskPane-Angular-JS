@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-const template = require("./app.component.html");
-/* global console, Office, require */
+
+/* global console, Office */
 
 @Component({
   selector: "app-home",
-  template,
+  templateUrl: "./app.component.html",
 })
 export default class AppComponent {
   welcomeMessage = "Welcome";
