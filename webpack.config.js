@@ -8,6 +8,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const urlDev = "https://localhost:3000/";
 const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
+async function getHttpsOptions() {
+  const httpsOptions = await devCerts.getHttpsServerOptions();
+  return { cacert: httpsOptions.ca, key: httpsOptions.key, cert: httpsOptions.cert };
+}
+
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
   const buildType = dev ? "dev" : "prod";
@@ -17,6 +22,9 @@ module.exports = async (env, options) => {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: "./src/taskpane/taskpane.js",
       commands: "./src/commands/commands.js",
+    },
+    output: {
+      devtoolModuleFilenameTemplate: "webpack:///[resource-path]?[loaders]",
     },
     module: {
       rules: [
@@ -51,6 +59,11 @@ module.exports = async (env, options) => {
         template: "./src/taskpane/taskpane.html",
         chunks: ["polyfill", "taskpane"],
       }),
+      new HtmlWebpackPlugin({
+        filename: "app.component.html",
+        template: "./src/taskpane/app/app.component.html",
+        chunks: ["polyfill", "app.component"],
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -59,7 +72,7 @@ module.exports = async (env, options) => {
           },
           {
             from: "manifest*.xml",
-            to: "[name]." + buildType + ".[ext]",
+            to: "[name]." + buildType + "[ext]",
             transform(content) {
               if (dev) {
                 return content;
@@ -80,7 +93,7 @@ module.exports = async (env, options) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
-      https: options.https !== undefined ? options.https : await devCerts.getHttpsServerOptions(),
+      https: env.WEBPACK_BUILD || options.https !== undefined ? options.https : await getHttpsOptions(),
       port: process.env.npm_package_config_dev_server_port || 3000,
     },
   };
