@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 
 const devCerts = require("office-addin-dev-certs");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
@@ -23,6 +21,7 @@ module.exports = async (env, options) => {
     output: {
       path: path.resolve(__dirname, "testBuild"),
       devtoolModuleFilenameTemplate: "webpack:///[resource-path]?[loaders]",
+      clean: true,
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"],
@@ -62,6 +61,9 @@ module.exports = async (env, options) => {
         {
           test: /\.(png|jpg|jpeg|gif|ico)$/,
           type: "asset/resource",
+          generator: {
+            filename: "assets/[name][ext][query]",
+          },
         },
       ],
     },
@@ -69,7 +71,6 @@ module.exports = async (env, options) => {
       new webpack.ProvidePlugin({
         process: "process/browser",
       }),
-      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         filename: "taskpane.html",
         template: "./test/src/test-taskpane.html",
@@ -79,14 +80,6 @@ module.exports = async (env, options) => {
         filename: "app.component.html",
         template: "./src/taskpane/app/app.component.html",
         chunks: ["polyfill", "app.component"],
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, "./../src/taskpane/taskpane.css"),
-            to: "taskpane.css",
-          },
-        ],
       }),
     ],
     devServer: {
