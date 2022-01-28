@@ -7,11 +7,11 @@ import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import AppModule from "./app/app.module";
 /* global console, document, Office */
 
-Office.initialize = () => {
+Office.onReady(() => {
   document.getElementById("sideload-msg").style.display = "none";
 
   // Bootstrap the app
   platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch((error) => console.error(error));
-};
+});
