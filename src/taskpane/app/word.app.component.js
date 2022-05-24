@@ -1,19 +1,16 @@
 import { Component } from "@angular/core";
-// images references in the manifest
-import "../../../assets/icon-16.png";
-import "../../../assets/icon-32.png";
-import "../../../assets/icon-80.png";
-const template = require("./app.component.html");
+
+/* global Word */
 
 @Component({
   selector: "app-home",
-  template
+  templateUrl: "./app.component.html",
 })
 export default class AppComponent {
   welcomeMessage = "Welcome";
 
   async run() {
-    return Word.run(async context => {
+    return Word.run(async (context) => {
       /**
        * Insert your Word code here
        */

@@ -1,13 +1,10 @@
 import { Component } from "@angular/core";
-// images references in the manifest
-import "../../../assets/icon-16.png";
-import "../../../assets/icon-32.png";
-import "../../../assets/icon-80.png";
-const template = require("./app.component.html");
+
+/* global console, Office */
 
 @Component({
   selector: "app-home",
-  template
+  templateUrl: "./app.component.html",
 })
 export default class AppComponent {
   welcomeMessage = "Welcome";
@@ -19,9 +16,9 @@ export default class AppComponent {
     Office.context.document.setSelectedDataAsync(
       "Hello World!",
       {
-        coercionType: Office.CoercionType.Text
+        coercionType: Office.CoercionType.Text,
       },
-      result => {
+      (result) => {
         if (result.status === Office.AsyncResultStatus.Failed) {
           console.error(result.error.message);
         }
